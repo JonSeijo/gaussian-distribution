@@ -67,4 +67,8 @@ public class Shooter {
 		return defaultVelocity;
 	}
 
+	public float getVelocity() {
+		return velocity;
+	}
+
 }

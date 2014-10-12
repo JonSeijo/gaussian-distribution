@@ -88,5 +88,11 @@ public class Shoot {
 	public float getDefaultStd() {
 		return defaultStd;
 	}
+	
+	public float getStdDev(){
+		return stdDev;
+	}
+	
+	
 
 }
