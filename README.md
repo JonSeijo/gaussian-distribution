@@ -5,7 +5,7 @@
 Using [libgdx](http://libgdx.badlogicgames.com/) framework.
 (Main code in path "/core")
 
-![alt tag](android/assets/screenshot1.png "Standard deviation )
+![alt tag](android/assets/screenshot1.png "Standard deviation")
 
 All generated valued can be found on the Y axis, with the mean on the center. The color palette is also generated with normal distribution.
 
