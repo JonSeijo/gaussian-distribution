@@ -29,17 +29,18 @@ public class Shoot {
 		gen = new Random();
 		
 		radius = 8;		
-		// Where the majority of ball will be painted
+		
+		// Where the majority of balls will be painted, mean of the gaussian distribution
 		mean = Gdx.graphics.getHeight()/2 + 50;
 		
-		defaultStd = 30;
-		stdDev = defaultStd;	
+		defaultStd = 30;		// Standard deviation
+		stdDev = defaultStd;  	
 		
-		alpha = 0.25f;
+		alpha = 0.25f;	// Transparency. Lower value = more transparency.
 		
 		// This represents the mean color in RGB way.
 		redMean = 0.f/255.f;
-		greenMean = 100.f/255.f;
+		greenMean = 100.f/255.f;  //0.39215..   to fit in range (0, 1);
 		blueMean = 245.f/255.f;
 		
 		colorDeviation = 0.15f;
@@ -63,11 +64,7 @@ public class Shoot {
 		shapeRenderer.circle(x, y, radius);
 	}
 	
-	/**
-	 * Set new standard deviation.
-	 * Default = 1.
-	 * @param stdDev
-	 */
+	// Set a new standard deviation
 	public void setStdDev(float stdDev){
 		this.stdDev = stdDev;
 	}

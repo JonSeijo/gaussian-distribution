@@ -10,8 +10,6 @@ public class Shooter {
 	
 	private float velocity, defaultVelocity;
 	private float width, windowWidth;
-	
-	private boolean isMoving;
 
 	private Texture texture;
 	private Texture back;
@@ -19,6 +17,8 @@ public class Shooter {
 	
 	public Shooter(){
 		texture = new Texture(Gdx.files.internal("shooter.png"));
+		
+		// The white pixel is used scaled in background. USE RECT SHAPE BETTER. NEEDS REWORK.
 		back = new Texture(Gdx.files.internal("pixel1.png"));		
 		windowWidth = Gdx.graphics.getWidth();
 		
@@ -26,20 +26,18 @@ public class Shooter {
 		y = 10;
 		width = texture.getWidth();		
 		centerX = width/2;
-		isMoving = true;
 		
 		defaultVelocity = 8;
 		velocity = defaultVelocity;
 
 	}
 	
-	public void move(float delta){
-		if(isMoving){
-			addX(velocity);
-			if(x >= windowWidth - width - 10 || x <= 10){
-				velocity = -velocity;
-			}
-		}
+	public void move(float delta){			
+		addX(velocity);	 // updates x position and centerx position
+		// If the shooter reach a side, it flips direction.
+		if(x >= windowWidth - width - 10 || x <= 10)
+			velocity = -velocity;
+		
 	}
 	
 	public void draw(SpriteBatch batch){

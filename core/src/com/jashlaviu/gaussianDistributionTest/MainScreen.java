@@ -25,7 +25,7 @@ public class MainScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		
+		// Checks if keys are pressed and handles it
 		processInput();
 		
 		// Texture draws
@@ -41,7 +41,7 @@ public class MainScreen implements Screen {
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		
 		game.shapeRenderer.setAutoShapeType(true);
-		game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);  //similar to batch.begin
+		game.shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);  //Otherwise just the exterior will be draw
 		
 		shoot.update(); //Updates the random position and color.
 		shoot.draw(game.shapeRenderer);
@@ -53,10 +53,71 @@ public class MainScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
+		// Resizing is disabled
+	}
+	
+	@Override
+	// Disposes textures and batch. Frees memory.
+	public void dispose() {
+		game.batch.dispose();
+		shooter.dispose();
+		shoot.dispose();
+	}
+	
+	private void processInput(){
+		// SPACE: change standard deviation and restart.
+		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
+			changeStdDev();
+			clearScreen();
+			
+		// CONTROL: change velocity and restart.
+		}else if(Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT)){
+			changeVelocity();
+			clearScreen();
+		}
+	}
+	
+	private void changeStdDev() {		
+		// Ask for user input in a text message
+		String inputStd = JOptionPane.showInputDialog(null, "Enter the standard deviation \n" +
+				"(default: " + shoot.getDefaultStd() + " )",
+				"Standard Deviation", JOptionPane.QUESTION_MESSAGE);
+		float sd;
+		//Convert the input string to a float number
+		try{
+			sd = Float.parseFloat(inputStd);
+		}catch(Exception ex){    
+			// If input is invalid, the default value is passed
+			sd = shoot.getDefaultStd();
+		}
+		
+		shoot.setStdDev(sd);		
+	}
+	
+	private void changeVelocity(){
+			// Ask for user input in a text message
+			String inputVel = JOptionPane.showInputDialog(null, "Enter the velocity \n" +
+					"(Default: " + shooter.getDefaultVelocity() + " )",
+					"Velocity", JOptionPane.QUESTION_MESSAGE);
+			
+			float v;
+			//Convert the input string to a float number
+			try{
+				v = Float.parseFloat(inputVel);
+			}catch(Exception ex){
+				// If input is invalid, the default value is passed
+				v = shooter.getDefaultVelocity();
+			}
+			
+			shooter.setVelocity(v);
 	}
 
+	private void clearScreen(){
+		// "Paints" the screen in white once.
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	}
+	
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
@@ -79,61 +140,6 @@ public class MainScreen implements Screen {
 	public void resume() {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void dispose() {
-		game.batch.dispose();
-		shooter.dispose();
-		shoot.dispose();
-	}
-	
-	private void processInput(){
-		if(Gdx.input.isKeyJustPressed(Keys.SPACE)){
-			changeStdDev();
-			clearScreen();
-		}else if(Gdx.input.isKeyJustPressed(Keys.CONTROL_LEFT)){
-			changeVelocity();
-			clearScreen();
-		}
-	}
-	
-	private void changeStdDev() {		
-		// Ask for user input in a text message
-		String inputStd = JOptionPane.showInputDialog(null, "Enter the standard deviation \n" +
-				"(default: " + shoot.getDefaultStd() + " )",
-				"Standard Deviation", JOptionPane.QUESTION_MESSAGE);
-		float sd;
-		//Convert the input string to a float number
-		try{
-			sd = Float.parseFloat(inputStd);
-		}catch(Exception ex){
-			sd = shoot.getDefaultStd();
-		}
-		
-		shoot.setStdDev(sd);		
-	}
-	
-	private void changeVelocity(){
-			// Ask for user input in a text message
-			String inputVel = JOptionPane.showInputDialog(null, "Enter the velocity \n" +
-					"(Default: " + shooter.getDefaultVelocity() + " )",
-					"Velocity", JOptionPane.QUESTION_MESSAGE);
-			
-			float v;
-			//Convert the input string to a float number
-			try{
-				v = Float.parseFloat(inputVel);
-			}catch(Exception ex){
-				v = shooter.getDefaultVelocity();
-			}
-			
-			shooter.setVelocity(v);
-	}
-
-	private void clearScreen(){		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 	}
 
 }
