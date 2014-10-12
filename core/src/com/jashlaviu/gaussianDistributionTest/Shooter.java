@@ -16,10 +16,8 @@ public class Shooter {
 	
 	
 	public Shooter(){
-		texture = new Texture(Gdx.files.internal("shooter.png"));
-		
-		// The white pixel is used scaled in background. USE RECT SHAPE BETTER. NEEDS REWORK.
-		back = new Texture(Gdx.files.internal("pixel1.png"));		
+		texture = new Texture(Gdx.files.internal("shooter.png"));	 
+		back = new Texture(Gdx.files.internal("pixel1.png"));			// The white pixel is used scaled in background.	
 		windowWidth = Gdx.graphics.getWidth();
 		
 		x = 10;
@@ -29,7 +27,6 @@ public class Shooter {
 		
 		defaultVelocity = 8;
 		velocity = defaultVelocity;
-
 	}
 	
 	public void move(float delta){			
@@ -69,6 +66,11 @@ public class Shooter {
 
 	public float getVelocity() {
 		return velocity;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+		
 	}
 
 }
