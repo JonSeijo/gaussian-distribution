@@ -1,7 +1,21 @@
-Gaussian Distribution
+## Gaussian Distribution - Visual demostration
+======
+##### Shows majority of points being generated towards the mean, with few of them deviating from it.
 
-This project uses the libgdx library.
-The main code is in path "gaussian-distribution/core".
+Using [libgdx](http://libgdx.badlogicgames.com/) framework.
+(Main code in path "/core")
+
+![alt tag](android/assets/screenshot1.png "Standard deviation )
+
+All generated valued can be found on the Y axis, with the mean on the center. The color palette is also generated with normal distribution.
+
+
+- **Standard Deviation:** _(Default: 30)_  Deviation from the mean used in gaussian distribution. Press SPACE key to modify it.
+
+- **Velocity:** _(Default: 8)_ Modifies velocity of the "shooter", and in consecuence, the spacing between the point on the X axis. Press CONTROL key to modify.
+
+
+
 
 
 
